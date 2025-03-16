@@ -1,14 +1,19 @@
 # Create directories
-mkdir /publico
-mkdir /adm
-mkdir /ven
-mkdir /sec
+[ ! -d /publico ] && mkdir /publico
+[ ! -d /adm ] && mkdir /adm
+[ ! -d /ven ] && mkdir /ven
+[ ! -d /sec ] && mkdir /sec
 
 # Set permissions for directories
 chmod 777 /publico
 chmod 770 /adm
 chmod 770 /ven
 chmod 770 /sec
+
+# Create groups if they do not exist
+getent group GRP_ADM || groupadd GRP_ADM
+getent group GRP_VEN || groupadd GRP_VEN
+getent group GRP_SEC || groupadd GRP_SEC
 
 # Change group ownership of directories
 chown root:GRP_ADM /adm
